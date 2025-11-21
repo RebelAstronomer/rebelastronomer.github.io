@@ -1,0 +1,40 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import FormattedDate from '@/components/FormattedDate.astro'
+import Tag from '@/components/Tag.astro'
+import Base from '@/layouts/Base.astro'
+
+type Props = CollectionEntry<'blog'>['data']
+
+const { title, description, pubDate, updatedDate, tags } = Astro.props
+---
+
+<Base content={title}>
+  <main>
+    <article class="px-5 mt-2 bg-base-300">
+      <div>
+        <div class="">
+          <h1 class="font-bold text-xl">{title}</h1>
+          <div class="">
+            <FormattedDate date={pubDate} />
+            {
+              updatedDate && (
+                <div class="last-updated-on">
+                  Last updated on <FormattedDate date={updatedDate} />
+                </div>
+              )
+            }
+          </div>
+          <p>{description}</p>
+          <ul class="flex flex-wrap flex-row gap-4 p-1">
+            {tags.map((tag) => (
+            <Tag>{tag}</Tag>
+            ))}
+          </ul>
+          <hr />
+        </div>
+        <slot />
+      </div>
+		</article>
+  </main>
+</Base>

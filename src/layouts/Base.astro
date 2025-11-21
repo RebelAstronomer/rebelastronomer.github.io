@@ -1,6 +1,10 @@
 ---
-import '../styles/global.css';
-const { content } = Astro.props;
+import Footer from '@/components/Footer.astro'
+import NavBar from '@/components/NavBar.astro'
+
+const { content } = Astro.props
+
+import '@/styles/global.css'
 ---
 
 <html lang="en">
@@ -11,6 +15,8 @@ const { content } = Astro.props;
 		<title>{content.title}</title>
 	</head>
 	<body>
+    <NavBar/>
 		<slot />
+    <Footer/>
 	</body>
 </html>
